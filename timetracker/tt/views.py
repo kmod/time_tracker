@@ -1,6 +1,7 @@
 import time
 import urllib
 
+from django.db.models import Max
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Log, LogDescription
@@ -11,8 +12,14 @@ from .models import Log, LogDescription
 # django.utils.timezone.activate(
 
 def enter(request):
+    if request.method == "POST":
+        pass
+    start = Log.objects.all().aggregate(Max('end'))['end__max']
+    if start is None:
+        start = time.localtime()
+    print(start)
     context = dict(
-            start="12:00:00",
-            end=time.strftime("%H:%M:%S", time.localtime()),
+            start=time.strftime("%Y-%m-%dT%H:%M:%S", start),
+            end=time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime()),
     )
     return render(request, "tt/enter.html", context)

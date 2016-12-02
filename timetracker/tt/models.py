@@ -6,6 +6,6 @@ class LogDescription(models.Model):
     title = models.CharField(max_length=255, unique=True)
 
 class Log(models.Model):
-    start = models.TimeField()
-    end = models.TimeField()
+    start = models.DateTimeField(db_index=True)
+    end = models.DateTimeField(db_index=True)
     description = models.ForeignKey(LogDescription)

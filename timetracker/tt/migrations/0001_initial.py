@@ -13,16 +13,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Log',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('start', models.TimeField()),
-                ('end', models.TimeField()),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('start', models.DateTimeField(db_index=True)),
+                ('end', models.DateTimeField(db_index=True)),
             ],
         ),
         migrations.CreateModel(
             name='LogDescription',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(unique=True, max_length=255)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('title', models.CharField(max_length=255, unique=True)),
             ],
         ),
         migrations.AddField(
