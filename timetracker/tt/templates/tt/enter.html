@@ -1,0 +1,15 @@
+<form method="post">
+{% csrf_token %}
+<label>Description:<input type="text" name="description" size="64" id=description /></label> <br/>
+
+<label>Start:<input type="time" name="description" size="64" id=start value="{{ start }}"/></label>
+<label>End:<input type="time" name="description" size="64" id=end value="{{ end }}"/></label>
+<br/>
+
+<input type="submit" value="Log" />
+</form>
+
+<script type="text/javascript">
+document.getElementById("title").focus();
+</script>
+
