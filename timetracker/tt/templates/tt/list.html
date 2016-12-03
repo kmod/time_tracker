@@ -1,0 +1,19 @@
+<link rel="stylesheet"type="text/css" href="/static/main.css">
+
+<table>
+    <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Duration</th>
+        <th>Description</th>
+    </tr>
+    {% for log in logs %}
+    <tr>
+        <td> {{ log.start }} </td>
+        <td> {{ log.end }} </td>
+        <td> {{ log.duration }} </td>
+        <td> {{ log.description.title }} </td>
+    </tr>
+    {% endfor %}
+</table>
+
