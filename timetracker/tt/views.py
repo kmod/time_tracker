@@ -1,5 +1,8 @@
 import collections
 import datetime
+import pytz
+
+tz = pytz.timezone("US/Pacific")
 
 from django.db.models import Max
 from django.shortcuts import render, get_object_or_404, redirect
@@ -43,7 +46,7 @@ def enter(request):
     if start is None:
         start = datetime.datetime.now()
     else:
-        start = start.astimezone(None)
+        start = start.astimezone(tz)
     print(start, repr(start))
 
     context = dict(
@@ -61,8 +64,8 @@ def list(request):
     logs = []
     for l in raw_logs:
         logs.append(ProcessedLog(
-            l.start.astimezone(None).strftime("%-I:%M %p"),
-            l.end.astimezone(None).strftime("%-I:%M %p"),
+            l.start.astimezone(tz).strftime("%-I:%M %p"),
+            l.end.astimezone(tz).strftime("%-I:%M %p"),
             l.end - l.start,
             l.description.title))
 
